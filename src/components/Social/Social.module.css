@@ -1,0 +1,18 @@
+.social {
+  display: flex;
+  gap: 1rem;
+}
+.socIcon {
+  color: #fff;
+  font-size: 20px;
+}
+
+.socialButton {
+  height: 1.5rem;
+  width: 1.5rem;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.socialButton:hover {
+  opacity: 0.75;
+}
