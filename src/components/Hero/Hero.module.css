@@ -1,0 +1,128 @@
+.hero {
+  padding: 5rem 20px;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.textBlock {
+  max-width: 500px;
+}
+
+.title {
+  font-size: 2rem;
+  font-family: "Georgia", serif;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #2c3e50;
+}
+
+.description {
+  margin-top: 10px;
+  color: #34495e;
+  font-size: 18px;
+}
+
+.button {
+  margin-top: 20px;
+  padding: 10px 25px;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.imageBlock {
+  max-width: 400px;
+}
+
+.image {
+  width: 100%;
+  border-radius: 30px;
+}
+
+.advantages {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+}
+
+.advantageItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #2c3e50;
+  font-size: 16px;
+}
+
+.advantageItem img {
+  width: 40px;
+  margin-bottom: 10px;
+}
+
+.lineSeperating {
+  display: block;
+  margin: 20px auto 20px;
+  width: 80%;
+  height: 4px;
+  border-radius: 5px;
+  background: linear-gradient(to right, #9fb2ff, #97d3ff);
+}
+
+.blockRegister {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 444;
+  background: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  width: 60%;
+}
+
+.openMenu {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+}
+
+@media (max-width: 768px) {
+  .lineSeperating {
+    height: 1.5px;
+  }
+  .imageBlock {
+    max-width: 200px;
+  }
+  .advantages {
+    gap: 20px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero {
+    padding: 8rem 20px;
+  }
+  .title {
+    font-size: 3rem;
+  }
+}
