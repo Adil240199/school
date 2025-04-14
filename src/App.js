@@ -1,8 +1,8 @@
 import React from 'react';
 import Navbar from './components/Navbar/Navbar.jsx';
-import Main from './components/Main/Main.jsx';
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home/Home.jsx';
 
 function App() {
   return (
@@ -10,8 +10,7 @@ function App() {
       <div className="container">
         <Navbar />
         <Routes>
-          <Route path="/" element={<Main />} />
-
+          <Route path="/" element={<Home/>} />
         </Routes>
       </div>
     </BrowserRouter>
