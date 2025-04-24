@@ -1,0 +1,33 @@
+.h5_tablet {
+  text-align: center;
+  margin: 1rem;
+}
+.Testimonials {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 20px;
+  padding: 0 5px 0 5px;
+  user-select: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x mandatory;
+}
+.Testimonials > * {
+  scroll-snap-align: center;
+}
+.Testimonials::-webkit-scrollbar {
+  display: none;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px 25px;
+  font-size: 1rem;
+}
+@media (min-width: 1024px) {
+  .Testimonials {
+    gap: 150px;
+  }
+}
