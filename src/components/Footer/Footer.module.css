@@ -1,0 +1,102 @@
+.footerWrap {
+  background: linear-gradient(135deg, #cdeeff, #e7f7ff);
+  padding: 40px 0;
+  box-shadow: inset 0 0 20px rgba(0, 140, 255, 0.1);
+}
+
+.footer {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoBlock {
+  text-align: center;
+}
+
+.wraplogo {
+  display: block;
+  width: 80px;
+  transition: transform 0.3s ease;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+}
+
+.footerText {
+  font-size: 0.9rem;
+  color: #222;
+  margin-top: 8px;
+  opacity: 0.75;
+}
+
+.subscribeForm {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  width: 100%;
+  max-width: 320px;
+}
+
+.emailLabel {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #222;
+}
+
+.emailInput {
+  padding: 12px 16px;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  border-radius: 12px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  transition: 0.3s ease;
+}
+
+.emailInput:focus {
+  outline: none;
+  border-color: #4fa3f7;
+  box-shadow: 0 0 0 3px rgba(79, 163, 247, 0.3);
+}
+
+.invalid {
+  border-color: #ff4d4d;
+  box-shadow: 0 0 0 2px rgba(255, 77, 77, 0.3);
+}
+
+.subscribeButton {
+  padding: 12px 20px;
+  font-weight: bold;
+  font-size: 1rem;
+  background-color: #4fa3f7;
+  border-radius: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.subscribeButton:hover {
+  background-color: #2787db;
+}
+
+.errorText {
+  color: #ff4d4d;
+  font-size: 0.8rem;
+}
+
+@media (min-width: 1024px) {
+  .footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .subscribeForm {
+    align-items: flex-start;
+  }
+}

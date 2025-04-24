@@ -1,0 +1,114 @@
+.resume {
+  padding: 40px 20px;
+  background-color: #fdfdfd;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.title {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+  color: #222;
+  position: relative;
+}
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #0070f3;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+.sectionBlock {
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  background-color: #fff;
+  padding: 12px 18px;
+  border-left: 4px solid #0070f3;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+.sectionTitle {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+.sectionText,
+.aboutText {
+  margin-top: 5px;
+  color: #444;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* Пошаговая анимация */
+.fadeIn0 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.2s;
+}
+.fadeIn1 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.4s;
+}
+.fadeIn2 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.6s;
+}
+.fadeIn3 {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.8s;
+}
+
+.imgAboutme {
+  width: 40%;
+  height: auto;
+  border-radius: 25px;
+  background-color: rgb(250, 235, 241);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.textName {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.blockAboutMe {
+  display: flex;
+  gap: 5rem;
+  width: 100%;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.rightBlockResume {
+  flex: 1;
+  min-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .blockAboutMe {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .imgAboutme {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .textName {
+    text-align: center;
+  }
+}
