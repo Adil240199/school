@@ -1,0 +1,121 @@
+.wrapper {
+  width: 100%;
+  background: linear-gradient(to right, #ffedff, #fdffbb);
+}
+.mainContainer {
+  padding: 5rem;
+  margin-top: 73px;
+}
+
+.title-courses {
+  margin: 0 auto 36px auto;
+  font-size: calc(15px + 25 * (100vw / 1400));
+  font-style: normal;
+  font-weight: 300;
+  line-height: 130%;
+  text-align: center;
+  width: 75%;
+  padding-left: 10px;
+  border-radius: 2px;
+}
+
+.blockCources {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(#afd9fa, #f79fd9);
+  width: 268px;
+  height: auto;
+  filter: drop-shadow(0px 0.2px 0.2px #000000);
+}
+
+.courseUpper,
+.courseElementary {
+  background: linear-gradient(#f9e79b, #f79fd9);
+}
+
+.top_feed {
+  display: flex;
+  padding: 10px 15px;
+}
+
+img {
+  width: 30px;
+  height: 30px;
+}
+
+.h7 {
+  color: #ffffff;
+  font-weight: 400;
+  font-size: calc(12px + 6 * (100vw / 1400));
+  line-height: 120%;
+}
+
+.text_feed {
+  color: #ffffff;
+  font-family: "Roboto", sans-serif;
+  font-weight: 300;
+  font-size: calc(10px + 5 * (100vw / 1400));
+  line-height: 120%;
+}
+
+.head_feed {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.container_text {
+  padding: 9px 32px 0;
+  height: auto;
+}
+
+.text {
+  margin: 0 auto 10px;
+  font-size: calc(8px + 7 * (100vw / 1400));
+  font-weight: 300;
+  line-height: 18px;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+}
+
+.containerMore {
+  display: flex;
+  justify-content: center;
+  border: #172c49 solid 1.5px;
+  border-radius: 25px;
+  width: 186px;
+  padding: 2px 0;
+  margin: auto auto 20px;
+  transition: filter 0.3s ease;
+}
+
+.containerMore:hover {
+  filter: drop-shadow(0px 1px 1px #727272);
+}
+
+@media (min-width: 1024px) {
+  .course {
+    width: 350px;
+  }
+}
+
+@media (max-width: 640px) {
+  .blockCources {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .top_feed {
+    padding: 10px 0 5px 10px;
+    height: 51.5px;
+  }
+
+  .container_text {
+    padding: 9px 5px 0;
+  }
+}

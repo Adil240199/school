@@ -10,7 +10,7 @@ function Hero() {
   const [openRegister, setOpenLesson] = useState(false);
 
   return (
-    <section className={styles.hero}>
+    <section className={`${styles.hero} container`}>
       {/* Форма */}
       <div className={`${styles.blockRegister} ${  openRegister ? styles.openMenu : "" }`}
       >

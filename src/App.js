@@ -7,7 +7,7 @@ import Home from './pages/Home/Home.jsx';
 function App() {
   return (
     <BrowserRouter>
-      <div className="container">
+      <div>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home/>} />
