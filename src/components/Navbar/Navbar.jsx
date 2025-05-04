@@ -6,8 +6,11 @@ import NavLinkButton from "../buttons/NavLinkButton";
 import { navbarLinks } from "../../content/navigation";
 import { useNavbar } from "../../hooks/useNavbar";
 import Social from "../Social/Social";
+import LanguageSwitcher from "../LanguageSwitcher/LanguageSwitcher";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const { t } = useTranslation();
   const { isOpen, handleClick, closeMenu } = useNavbar();
 
   return (
@@ -26,13 +29,14 @@ const Navbar = () => {
 
         {/* Десктопное меню */}
         <ul className={styles.ulDesktop}>
-          {navbarLinks.map(({ title, href }, index) => (
+          {navbarLinks.map(({ key, href }, index) => (
             <li key={index}>
-              <NavLinkButton text={title} href={href} />
+              <NavLinkButton text={t(key)} href={href} />
             </li>
           ))}
         </ul>
-
+          
+        
         <div className={styles.wrapIconMobile}>
           <button
             onClick={handleClick}
@@ -41,6 +45,7 @@ const Navbar = () => {
             {isOpen ? <span>&#10005;</span> : <span>&#9776;</span>}
           </button>
         </div>
+        <LanguageSwitcher />
       </div>
       <div
         className={`${styles.mobileMenu} ${
@@ -49,14 +54,14 @@ const Navbar = () => {
       >
         <div className={styles.ulMobileWrap}>
           <ul className={styles.ulMobile}>
-            {navbarLinks.map(({ title, href }, index) => (
+            {navbarLinks.map(({ key, href }, index) => (
               <li key={index}>
                 <Link
                   href={href}
                   onClick={closeMenu}
                   className={styles.linkMobile}
                 >
-                  {title}
+                  {t(key)}
                 </Link>
               </li>
             ))}
