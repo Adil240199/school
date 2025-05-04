@@ -1,0 +1,50 @@
+.languageBlock {
+  z-index: 9999;
+  position: absolute;
+  right: 6rem;
+  top: 1rem;
+}
+
+.languageBlock .languageChose {
+  margin-bottom: 5px;
+}
+
+.languageBlock .languageChose b,
+.languageBlock .languageChose span {
+  color: black;
+  font-size: 15px;
+  margin-left: 3px;
+}
+
+.languageBlock .languageChose span {
+  cursor: pointer;
+  border-bottom: 2px #748db4 dashed;
+}
+
+.languageBlock .languagePopup {
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.languageBlock .languagePopup ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.languageBlock .languagePopup .active {
+  color: #748db4;
+  font-weight: bold;
+}
+
+.languageBlock .languagePopup li {
+  color: black;
+  padding: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.languageBlock .languagePopup li:hover {
+  background-color: #f0f0f0;
+}

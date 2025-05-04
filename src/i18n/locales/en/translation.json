@@ -1,0 +1,149 @@
+{     
+  "hero": {
+    "title": "Welcome",
+    "subtitle": "to the online English school",
+    "description": "Learn English comfortably from home",
+    "button": "Book a trial lesson",
+    "advantages": [
+      "Flexible schedule",
+      "Support and feedback",
+      "Personalized approach"
+    ]
+  },
+    
+   "navbar": {
+    "home": "Home",
+    "courses": "Courses",
+    "about": "About Me",
+    "language": "Language"
+   },
+
+   "languages": {
+    "ru": "Russian",
+    "en": "English",
+    "kz": "Kazakh"
+  },
+
+  "heroForm": {
+    "title": "Trial Lesson Registration",
+    "subtitle": "Enter your details",
+    "fields": {
+      "name": {
+        "label": "Name",
+        "error": "Please enter your name"
+      },
+      "phone": {
+        "label": "Phone",
+        "error": "Please enter your phone number"
+      }
+    },
+    "submit": "Submit"
+  },
+
+  "levelSelect": {
+    "title": "Choose the Right Course",
+    "courses": {
+      "elementary": {
+        "title": "Elementary",
+        "price": "Beginner · $100",
+        "description": "Our beginner course will help you master the basics: alphabet, grammar, speaking skills, and readiness to communicate in English."
+      },
+      "intermediate": {
+        "title": "Pre-Intermediate",
+        "price": "Intermediate · $100",
+        "description": "Designed for learners with basic English skills who want to improve grammar, expand vocabulary, and speak more confidently."
+      },
+      "upper": {
+        "title": "Upper-Intermediate",
+        "price": "Advanced · $100",
+        "description": "Advanced English course focusing on speaking, grammar, vocabulary, reading complex texts, and engaging in deep discussions."
+      }
+    }
+  },
+  
+  "resume": {
+    "title": "All About Me",
+    "profileAlt": "Profile photo",
+    "name": "Aray Mukhametova",
+    "experience": {
+      "title": "Work Experience:",
+      "text": "8 years of teaching English"
+    },
+    "certificates": {
+      "title": "Certificates:",
+      "text": "IELTS, CAMBRIDGE, TEFL, CELTA"
+    },
+    "education": {
+      "title": "Education:",
+      "text": "Higher philological education"
+    },
+    "about": {
+      "title": "About Me:",
+      "text": "I have a background in English language and linguistics, and I’ve been actively teaching students of different ages and levels. My English proficiency is at a solid C1 level – I speak fluently, write clearly, and have a strong command of grammar, vocabulary, and pronunciation."
+    }
+  },
+
+  "testimonials": {
+    "title": "Testimonials",
+    "leaveReview": "Leave a Review",
+    "reviews": [
+      {
+        "name": "Aigul Karimova",
+        "location": "Kazakhstan · Today",
+        "text": "I went from A1 to B1 — incredible progress! I used to be afraid to speak, but now I can easily talk about simple topics. Highly recommended for beginners!",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Ivan Petrov",
+        "location": "Russia · Yesterday",
+        "text": "The teachers explain grammar perfectly. I especially liked the interactive exercises and practice with native speakers. I now feel confident at B1 level.",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Asel Nurmanova",
+        "location": "Kazakhstan · 2 days ago",
+        "text": "Before the course, I couldn’t even make one sentence. Now I read English articles with ease. All thanks to the step-by-step teaching method!",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Daniil Kuznetsov",
+        "location": "Belarus · 3 days ago",
+        "text": "Great approach! Lots of real practice, real dialogues, and excellent materials. The best course I’ve seen for levels A1-B2.",
+        "img": "images/user.png",
+        "specialClass": "Oscar"
+      },
+      {
+        "name": "Madina Erzhanova",
+        "location": "Kazakhstan · 4 days ago",
+        "text": "I finished the B1-B2 course and finally stopped being afraid to speak. Lessons are fun, and teachers are super supportive. Thank you to the whole team!",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Sergey Lapin",
+        "location": "Russia · 5 days ago",
+        "text": "The course helped organize my knowledge and fill grammar gaps. Audio training and speaking practices were especially useful.",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Albina Sadykova",
+        "location": "Uzbekistan · A week ago",
+        "text": "Very satisfied! The course is beginner-friendly and well-structured. I started from A1 and now understand English movies with subtitles!",
+        "img": "images/user.png"
+      },
+      {
+        "name": "Zhenisbek Mukhamedov",
+        "location": "Kazakhstan · A week ago",
+        "text": "I thought online learning wouldn’t work, but I was wrong. Clear, to the point, and no fluff. Great course for those studying and working at the same time.",
+        "img": "images/user.png"
+      }
+    ]
+  },
+
+  "footer": {
+    "subscribeTitle": "Subscribe to newsletter",
+    "subscribeButton": "Subscribe",
+    "placeholder": "example@email.com",
+    "emailError": "Invalid email address"
+  }
+}
+  

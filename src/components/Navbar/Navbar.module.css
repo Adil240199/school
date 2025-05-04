@@ -10,8 +10,8 @@
 
 .navWrap {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
   min-height: 64px;
 }
 
@@ -45,6 +45,7 @@
   color: rgb(5, 28, 92);
   font-size: 2rem;
   transition: transform 0.3s;
+  margin-left: auto;
   margin-right: 1.25rem;
 }
 

@@ -1,17 +1,15 @@
-import React from 'react';
+import React from "react";
 import styles from "./Footer.module.css";
-import Social from '../Social/Social';
-import { NavLink } from 'react-router-dom';
+import Social from "../Social/Social";
+import { NavLink } from "react-router-dom";
 import logo from "../../images/brand/logo.png";
-import { useEmailSubscribe } from '../../hooks/useEmailSubscribe';
+import { useEmailSubscribe } from "../../hooks/useEmailSubscribe";
+import { useTranslation } from "react-i18next";
 
 const Footer = () => {
-  const {
-    email,
-    isValid,
-    handleChange,
-    handleSubmit,
-  } = useEmailSubscribe();
+  const { email, isValid, handleChange, handleSubmit } = useEmailSubscribe();
+
+  const { t } = useTranslation();
 
   return (
     <footer className={styles.footerWrap}>
@@ -29,7 +27,7 @@ const Footer = () => {
 
         <form onSubmit={handleSubmit} className={styles.subscribeForm}>
           <label htmlFor="email" className={styles.emailLabel}>
-            Подписка на новости
+            {t("footer.subscribeTitle")}
           </label>
           <input
             id="email"
@@ -37,13 +35,15 @@ const Footer = () => {
             value={email}
             onChange={handleChange}
             className={`${styles.emailInput} ${!isValid ? styles.invalid : ""}`}
-            placeholder="example@email.com"
+            placeholder={t("footer.placeholder")}
             required
           />
           <button className={styles.subscribeButton} type="submit">
-            Подписаться
+            {t("footer.subscribeButton")}
           </button>
-          {!isValid && <span className={styles.errorText}>Неверный email</span>}
+          {!isValid && (
+            <span className={styles.errorText}>{t("footer.emailError")}</span>
+          )}
         </form>
       </div>
     </footer>

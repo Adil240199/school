@@ -5,14 +5,21 @@ import time from "../../images/icons/time.svg";
 import growth from "../../images/icons/growth.svg";
 import person from "../../images/icons/person.svg";
 import HeroForm from "../HeroForm/HeroForm";
+import { useTranslation } from "react-i18next";
 
 function Hero() {
+  const { t } = useTranslation();
   const [openRegister, setOpenLesson] = useState(false);
 
+  const icons = [time, growth, person];
+  const advantages = t("hero.advantages", { returnObjects: true });
   return (
     <section className={`${styles.hero} container`}>
       {/* Форма */}
-      <div className={`${styles.blockRegister} ${  openRegister ? styles.openMenu : "" }`}
+      <div
+        className={`${styles.blockRegister} ${
+          openRegister ? styles.openMenu : ""
+        }`}
       >
         <HeroForm onClose={() => setOpenLesson(false)} />
       </div>
@@ -20,13 +27,11 @@ function Hero() {
       {/* Контент */}
       <div className={styles.content}>
         <div className={styles.textBlock}>
-          <h1 className={styles.title}>Добро пожаловать</h1>
-          <p className={styles.subtitle}>в онлайн-школу английского языка</p>
-          <p className={styles.description}>
-            Изучайте английский, не выходя из дома комфортно
-          </p>
+          <h1 className={styles.title}>{t("hero.title")}</h1>
+          <p className={styles.subtitle}>{t("hero.subtitle")}</p>
+          <p className={styles.description}>{t("hero.description")}</p>
           <button onClick={() => setOpenLesson(true)} className={styles.button}>
-            Запись на пробный урок
+            {t("hero.button")}
           </button>
         </div>
         <div className={styles.imageBlock}>
@@ -36,13 +41,9 @@ function Hero() {
 
       {/* Преимущества */}
       <div className={styles.advantages}>
-        {[
-          { icon: time, text: "Гибкий график" },
-          { icon: growth, text: "Поддержка и обратная связь" },
-          { icon: person, text: "Персонализированный подход" },
-        ].map(({ icon, text }, i) => (
+        {advantages.map((text, i) => (
           <div key={i} className={styles.advantageItem}>
-            <img src={icon} alt={text} />
+            <img src={icons[i]} alt={text} />
             <p>{text}</p>
           </div>
         ))}
