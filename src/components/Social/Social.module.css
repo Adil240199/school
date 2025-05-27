@@ -8,11 +8,10 @@
 }
 
 .socialButton {
-  height: 1.5rem;
-  width: 1.5rem;
+  height: 1.7rem;
+  width: 1.7rem;
   transition: opacity 0.2s ease-in-out;
-}
-
-.socialButton:hover {
-  opacity: 0.75;
+  &:hover {
+    opacity: 0.75;
+  }
 }

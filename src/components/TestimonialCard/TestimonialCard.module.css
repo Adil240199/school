@@ -8,11 +8,10 @@
   box-shadow: 0 8px 20px rgba(255, 105, 180, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
   min-width: 400px;
-}
-
-.testimonial:hover {
-  border-color: #ffb6e6;
-  box-shadow: 0 0 12px rgba(255, 182, 230, 0.5);
+  &:hover {
+    border-color: #ffb6e6;
+    box-shadow: 0 0 12px rgba(255, 182, 230, 0.5);
+  }
 }
 
 .topFeed {
