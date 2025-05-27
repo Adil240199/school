@@ -64,9 +64,9 @@
   color: #fff;
   margin-top: 25px;
   border: none;
-}
-.submit:hover {
-  background-color: #336b87;
+  &:hover {
+    background-color: #336b87;
+  }
 }
 .cross {
   width: 15px;

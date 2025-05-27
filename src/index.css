@@ -28,7 +28,7 @@ button {
   color: #fff;
   border-radius: 30px;
   cursor: pointer;
-}
-button:hover {
-  background-color: #336b87;
+  &:hover {
+    background-color: #336b87;
+  }
 }
