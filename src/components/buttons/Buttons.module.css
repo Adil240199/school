@@ -4,15 +4,14 @@
   border-radius: 9999px;
   border: 1px solid#322e2f;
   text-align: center;
-  font-size: 0.875rem;
-  font-weight: 500;
+  font-size: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: border-color 0.2s ease-in-out;
   &:hover {
-  border-color: #e2d810;
-  color: #e2d810;
+    border-color: #e2d810;
+    color: #e2d810;
   }
 }
 
@@ -26,11 +25,10 @@
   align-items: center;
   padding: 4px;
   transition: all 0.3s ease;
-}
-
-.SocialButton:hover {
-  background-color: #e2d810;
-  transform: scale(1.05);
+  &:hover {
+    background-color: #e2d810;
+    transform: scale(1.05);
+  }
 }
 
 @media (min-width: 640px) {
