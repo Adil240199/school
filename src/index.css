@@ -27,6 +27,8 @@ button {
   background-color: #748db4;
   color: #fff;
   border-radius: 30px;
+  padding: 10px 25px;
+  font-size: 1rem;
   cursor: pointer;
   &:hover {
     background-color: #336b87;

@@ -10,7 +10,7 @@ const LevelSelect = () => {
   return (
     <div className={styles.wrapper}>
       <div className={`${styles.mainContainer} container`}>
-        <h4 className={styles["title-courses"]}>{t("levelSelect.title")}</h4>
+        <h4 className={styles.titleCourses}>{t("levelSelect.title")}</h4>
         <div className={styles.blockCources}>
           {["elementary", "intermediate", "upper"].map((levelKey) => {
             const level = courses[levelKey];

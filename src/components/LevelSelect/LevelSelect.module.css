@@ -7,9 +7,9 @@
   margin-top: 73px;
 }
 
-.title-courses {
+.titleCourses {
   margin: 0 auto 36px;
-  font-size: calc(15px + 25 * (100vw / 1400));
+  font-size: clamp(12px, 1.2vw, 3rem);
   line-height: 130%;
   text-align: center;
   width: 75%;
@@ -74,7 +74,8 @@ img {
 
 .text {
   margin: 0 auto 10px;
-  font-size: calc(5px + 7 * (100vw / 1400));
+  font-size: clamp(12px, 1.2vw, 1rem);
+  font-weight: 300;
   line-height: 1rem;
   text-align: center;
   font-family: "Roboto", sans-serif;
