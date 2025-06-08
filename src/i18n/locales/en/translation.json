@@ -86,57 +86,7 @@
   "testimonials": {
     "title": "Testimonials",
     "leaveReview": "Leave a Review",
-    "reviews": [
-      {
-        "name": "Aigul Karimova",
-        "location": "Kazakhstan · Today",
-        "text": "I went from A1 to B1 — incredible progress! I used to be afraid to speak, but now I can easily talk about simple topics. Highly recommended for beginners!",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Ivan Petrov",
-        "location": "Russia · Yesterday",
-        "text": "The teachers explain grammar perfectly. I especially liked the interactive exercises and practice with native speakers. I now feel confident at B1 level.",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Asel Nurmanova",
-        "location": "Kazakhstan · 2 days ago",
-        "text": "Before the course, I couldn’t even make one sentence. Now I read English articles with ease. All thanks to the step-by-step teaching method!",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Daniil Kuznetsov",
-        "location": "Belarus · 3 days ago",
-        "text": "Great approach! Lots of real practice, real dialogues, and excellent materials. The best course I’ve seen for levels A1-B2.",
-        "img": "images/user.png",
-        "specialClass": "Oscar"
-      },
-      {
-        "name": "Madina Erzhanova",
-        "location": "Kazakhstan · 4 days ago",
-        "text": "I finished the B1-B2 course and finally stopped being afraid to speak. Lessons are fun, and teachers are super supportive. Thank you to the whole team!",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Sergey Lapin",
-        "location": "Russia · 5 days ago",
-        "text": "The course helped organize my knowledge and fill grammar gaps. Audio training and speaking practices were especially useful.",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Albina Sadykova",
-        "location": "Uzbekistan · A week ago",
-        "text": "Very satisfied! The course is beginner-friendly and well-structured. I started from A1 and now understand English movies with subtitles!",
-        "img": "images/user.png"
-      },
-      {
-        "name": "Zhenisbek Mukhamedov",
-        "location": "Kazakhstan · A week ago",
-        "text": "I thought online learning wouldn’t work, but I was wrong. Clear, to the point, and no fluff. Great course for those studying and working at the same time.",
-        "img": "images/user.png"
-      }
-    ]
+    "newReviewTitle": "New review"
   },
 
   "footer": {
