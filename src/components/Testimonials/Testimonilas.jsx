@@ -5,6 +5,7 @@ import { useTranslation } from "react-i18next";
 import TestimonialCard from "../TestimonialCard/TestimonialCard";
 import ReviewForm from "../ReviewForm/ReviewForm";
 import { useReviews } from "../../hooks/useReviews";
+import PreLoader from "../preloader/preloader";
 
 export default function Testimonials() {
   const { sliderRef, handleMouseDown, handleMouseMove, handleMouseUpOrLeave } = useSlider();
@@ -22,11 +23,11 @@ export default function Testimonials() {
     }
   }, [addReview]);
 
-  if (loading) return <p>Loading reviews...</p>;
-  if (error)   return <p>Error: {error}</p>;
+  if (loading) return <PreLoader />;
+  if (error)   return <p style={{ margin: 'auto' }}>Error: {error}</p>;
 
   return (
-    <div>
+    <div className={styles.container}>
       <h2 className={styles.h5_tablet}>{t("testimonials.title")}</h2>
 
       <div
@@ -37,9 +38,11 @@ export default function Testimonials() {
         onMouseLeave={handleMouseUpOrLeave}
         className={styles.Testimonials}
       >
+
         {reviews.map((review) => (
           <TestimonialCard key={review._id} {...review} />
         ))}
+
       </div>
 
       <button className={styles.button} onClick={() => setIsModalOpen(true)}>

@@ -87,9 +87,8 @@
   pointer-events: none;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 444;
+  z-index: 99999;
   background: transparent;
-  border: 2px solid rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(15px);
   border-radius: 20px;
   width: 60%;

@@ -22,7 +22,7 @@
   display: block;
   width: 60px;
   height: 3px;
-  background-color: #0070f3;
+  background-color: #c8b9b9;
   margin: 8px auto 0;
   border-radius: 2px;
 }
@@ -33,7 +33,7 @@
   transition: opacity 0.8s ease, transform 0.8s ease;
   background-color: #fff;
   padding: 12px 18px;
-  border-left: 4px solid #0070f3;
+  border-left: 4px solid #c8b9b9;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
 }
@@ -72,14 +72,40 @@
   transition-delay: 0.8s;
 }
 
-.imgAboutme {
-  width: 40%;
-  height: auto;
-  border-radius: 25px;
-  background-color: rgb(250, 235, 241);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+.blockPhoto {
+  flex: 0 0 50%;
+  width: 50%;
+  height: 50%;  
+  position: relative;
+  display: flex;
+  justify-content: center;
 }
 
+.shape {
+  position: absolute;
+  width: 50%;
+  height: auto;
+  z-index: 0;
+  transform: translateX(-50%) translateY(15%);
+}
+.imgAboutme {
+  width: 60%;
+  height: auto;
+  z-index: 1;
+  position: relative;
+  border-radius: 50%; /* делаем круглым */
+  background-color: rgba(255, 192, 201, 0.3); /* холодный пастельный розовый */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.element {
+  width: 180px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  right: 10px;
+  transform: rotate(-10deg);
+}
 .textName {
   font-size: 2rem;
   margin-bottom: 20px;
@@ -99,16 +125,15 @@
 }
 
 @media (max-width: 768px) {
-  .blockAboutMe {
-    flex-direction: column;
-    gap: 2rem;
+  .blockPhoto {
+    flex: 0 0 100%;
   }
-  .imgAboutme {
-    width: 100%;
-    max-width: 300px;
-    margin: 0 auto;
-  }
+
   .textName {
     text-align: center;
+  }
+
+  .element {
+    width: 100px;
   }
 }

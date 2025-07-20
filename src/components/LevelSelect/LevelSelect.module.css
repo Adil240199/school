@@ -24,17 +24,19 @@
 }
 
 .course {
+  color: #4c4c5e;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#afd9fa, #f79fd9);
+  background: linear-gradient(#bde0fc, #fcb5e4);
   width: 268px;
   height: auto;
   filter: drop-shadow(0px 0.2px 0.2px #000000);
+  border-radius: 10px;
 }
 
 .courseUpper,
 .courseElementary {
-  background: linear-gradient(#f9e79b, #f79fd9);
+  background: linear-gradient(#ffefaa, #fdb5e5);
 }
 
 .top_feed {
@@ -48,14 +50,12 @@ img {
 }
 
 .h7 {
-  color: #fff;
   font-weight: 400;
   font-size: calc(12px + 6 * (100vw / 1400));
   line-height: 120%;
 }
 
 .text_feed {
-  color: #fff;
   font-family: "Roboto", sans-serif;
   font-weight: 300;
   font-size: calc(10px + 5 * (100vw / 1400));
