@@ -1,14 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./TestimonialCard.module.css";
 
-const TestimonialCard = ({ name, location, text, img, specialClass }) => {
+const TestimonialCard = ({ name, location, text = "", img, specialClass }) => {
   const [open, setOpen] = useState(false);
   const isLong = text.length > 200;
-  const preview = isLong ? text.slice(0, 200) + "..." : text;
+  const preview = isLong ? text.slice(0, 200) + "…" : text;
+
+  const handleToggle = () => setOpen((prev) => !prev);
+
+  useEffect(() => {
+    document.body.style.overflow = open ? "hidden" : "auto";
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
 
   return (
     <>
-      <div className={`${styles.testimonial} ${specialClass && styles[specialClass]}`}>
+      <div
+        className={`${styles.testimonial} ${
+          specialClass && styles[specialClass]
+        }`}
+      >
         <div className={styles.topFeed}>
           <img className={styles.userImg} src={img} alt={name} />
           <div>
@@ -18,7 +31,7 @@ const TestimonialCard = ({ name, location, text, img, specialClass }) => {
         </div>
         <p className={styles.previewText}>{preview}</p>
         {isLong && (
-          <button className={styles.readMore} onClick={() => setOpen(true)}>
+          <button className={styles.readMore} onClick={handleToggle}>
             Читать полностью
           </button>
         )}
@@ -28,7 +41,9 @@ const TestimonialCard = ({ name, location, text, img, specialClass }) => {
         <div className={styles.modalOverlay} onClick={() => setOpen(false)}>
           <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
             <p className={styles.modalText}>{text}</p>
-            <button className={styles.closeBtn} onClick={() => setOpen(false)}>Закрыть</button>
+            <button className={styles.closeBtn} onClick={() => setOpen(false)}>
+              Закрыть
+            </button>
           </div>
         </div>
       )}
