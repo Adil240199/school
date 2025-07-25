@@ -4,7 +4,6 @@
 }
 .mainContainer {
   padding: 5rem;
-  margin-top: 73px;
 }
 
 .titleCourses {
@@ -20,7 +19,7 @@
 .blockCources {
   margin: auto;
   display: flex;
-  gap: 30px;
+  justify-content: space-around;
 }
 
 .course {
@@ -95,7 +94,7 @@ img {
     filter: drop-shadow(0px 1px 1px #727272);
   }
 }
-
+.white { background-color: #fff;}
 @media (min-width: 1024px) {
   .course {
     width: 350px;

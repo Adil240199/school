@@ -1,7 +1,10 @@
-// src/hooks/useReviews.js
 import { useState, useEffect, useCallback } from "react";
 
-const API_URL = "https://school-backend-c6gi.onrender.com/api/reviews";
+// Автоматический выбор API в зависимости от среды
+const API_URL =
+  process.env.NODE_ENV === "development"
+    ? "http://localhost:3000/api/reviews"
+    : "https://school-backend-c6gi.onrender.com/api/reviews";
 
 export function useReviews() {
   const [reviews, setReviews] = useState([]);
@@ -11,7 +14,10 @@ export function useReviews() {
   // Загрузка всех отзывов
   useEffect(() => {
     fetch(API_URL)
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to fetch reviews");
+        return res.json();
+      })
       .then(setReviews)
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
