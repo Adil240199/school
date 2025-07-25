@@ -64,12 +64,12 @@ export default function Popup({ title, children, onClose }) {
   return (
     <>
       <div
-        className={styles.overlay}
+        className="overlay"
         onClick={onClose}
         aria-hidden="true"
       />
       <div
-        className={styles.modal}
+        className="modal"
         role="dialog"
         aria-modal="true"
         aria-labelledby="modal-title"

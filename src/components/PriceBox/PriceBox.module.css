@@ -1,0 +1,69 @@
+.priceBox {
+  position: sticky;
+  top: 1rem;
+  align-self: start;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.price {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.old {
+  font-size: 16px;
+  color: #999;
+  text-decoration: line-through;
+  margin-left: 0.5rem;
+}
+
+.button {
+  background-color: #22c55e;
+  border: none;
+  padding: 0.75rem 1rem;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.guarantee {
+  font-size: 12px;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.features {
+  font-size: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.features li {
+  padding: 0.25rem 0;
+}
+
+.contact {
+  margin-top: 1rem;
+  font-size: 12px;
+  color: #0070f3;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Responsive — переносится вниз */
+@media (max-width: 768px) {
+  .priceBox {
+    position: static;
+    margin-top: 2rem;
+  }
+}

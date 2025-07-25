@@ -66,31 +66,6 @@
   font-weight: 600;
 }
 
-.modalOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.7);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
-  padding: 16px;
-}
-
-.modal {
-  background: #fff;
-  border-radius: 12px;
-  padding: 24px;
-  max-width: 600px;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  z-index: 9999;
-}
-
 .modalText,
 .previewText {
   font-size: 1rem;
@@ -122,7 +97,7 @@
     font-size: 1rem;
   }
 
-  .location {
-    font-size: 0.85rem;
+  .location, .modalText {
+    font-size: 0.50rem;
   }
 }

@@ -5,12 +5,11 @@ import Footer from './components/Footer/Footer.jsx';
 import Home from './pages/Home/Home.jsx';
 import Courses from './pages/Courses/Courses.jsx';
 import AboutMe from './pages/AboutMe/AboutMe.jsx';
-
 import './App.css';
 function App() {
   return (
     <BrowserRouter>
-      <div>
+      <div className='app'>
         <Navbar />
         <Routes>
           <Route path="/" element={<Home/>} />

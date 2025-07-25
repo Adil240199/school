@@ -32,14 +32,14 @@ const TestimonialCard = ({ name, location, text = "", img, specialClass }) => {
         <p className={styles.previewText}>{preview}</p>
         {isLong && (
           <button className={styles.readMore} onClick={handleToggle}>
-            Читать полностью
+            Read More
           </button>
         )}
       </div>
 
       {open && (
-        <div className={styles.modalOverlay} onClick={() => setOpen(false)}>
-          <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
+        <div className="overlay" onClick={() => setOpen(false)}>
+          <div className="modal" onClick={(e) => e.stopPropagation()}>
             <p className={styles.modalText}>{text}</p>
             <button className={styles.closeBtn} onClick={() => setOpen(false)}>
               Закрыть

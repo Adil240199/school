@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./Navbar.module.css";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../images/brand/logo.png";
 import NavLinkButton from "../buttons/NavLinkButton";
 import { navbarLinks } from "../../content/navigation";
@@ -35,8 +35,7 @@ const Navbar = () => {
             </li>
           ))}
         </ul>
-          
-        
+
         <div className={styles.wrapIconMobile}>
           <button
             onClick={handleClick}
@@ -52,22 +51,22 @@ const Navbar = () => {
           isOpen ? styles.open : styles.closed
         }`}
       >
+        {/* Мобильное меню меню */}
         <div className={styles.ulMobileWrap}>
           <ul className={styles.ulMobile}>
             {navbarLinks.map(({ key, href }, index) => (
               <li key={index}>
-                <Link
-                  href={href}
+                <NavLink
+                  to={href}
                   onClick={closeMenu}
                   className={styles.linkMobile}
                 >
                   {t(key)}
-                </Link>
+                </NavLink>
               </li>
             ))}
           </ul>
 
-          {/* Социальные ссылки */}
           <div className={styles.wrapSocial}>
             <Social />
           </div>

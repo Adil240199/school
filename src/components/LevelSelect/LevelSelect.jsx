@@ -4,12 +4,12 @@ import { courses } from "../../content/courses";
 import arrow from "../../images/icons/rightArrow.png";
 import { useTranslation } from "react-i18next";
 import Popup from "../Popup/Popup";
-const LevelSelect = () => {
+const LevelSelect = ({ variant = "default" }) => {
   const { t } = useTranslation();
   const [activeModal, setActiveModal] = useState(null);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={`${styles.wrapper} ${styles[variant]}`}>
       <div className={`${styles.mainContainer} container`}>
         <h4 className={styles.titleCourses}>{t("levelSelect.title")}</h4>
         <div className={styles.blockCources}>
