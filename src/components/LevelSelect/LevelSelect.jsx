@@ -1,66 +1,58 @@
 import React, { useState } from "react";
 import styles from "./LevelSelect.module.css";
-import { courses } from "../../content/courses";
 import arrow from "../../images/icons/rightArrow.png";
 import { useTranslation } from "react-i18next";
 import Popup from "../Popup/Popup";
+import { useCourses } from "../../hooks/useCourses";
+import PreLoader from "../preloader/preloader";
 const LevelSelect = ({ variant = "default" }) => {
-  const { t } = useTranslation();
+  const { courses, loading } = useCourses();
   const [activeModal, setActiveModal] = useState(null);
+  const { t } = useTranslation();
+
+  if (loading) return <PreLoader />;
 
   return (
     <div className={`${styles.wrapper} ${styles[variant]}`}>
       <div className={`${styles.mainContainer} container`}>
         <h4 className={styles.titleCourses}>{t("levelSelect.title")}</h4>
         <div className={styles.blockCources}>
-          {["elementary", "intermediate", "upper"].map((key) => {
-            const lvl = courses[key];
-            return (
-              <div
-                key={key}
-                className={`${styles.course} ${styles[lvl.levelClass]}`}
-              >
-                <div className={styles.top_feed}>
-                  <img src={lvl.img} alt="course" />
-                  <div className={styles.head_feed}>
-                    <p className={styles.h7}>
-                      {t(`levelSelect.courses.${key}.title`)}
-                    </p>
-                    <p className={styles.text_feed}>
-                      {t(`levelSelect.courses.${key}.price`)}
-                    </p>
-                  </div>
-                </div>
-                <div className={styles.container_text}>
-                  <p className={styles.text}>
-                    {t(`levelSelect.courses.${key}.description`)}
-                  </p>
-                </div>
-                <div
-                  className={styles.containerMore}
-                  onClick={() => setActiveModal(key)}
-                >
-                  <img src={arrow} alt="arrow" />
-                </div>
-              </div>
-            );
-          })}
+          {courses.map((course) => (
+          
+          <div key={course.level} className={`${styles.course} ${styles[course.level]}`}>
+          <div className={styles.top_feed}>
+            <img src={course.img} alt="course" />
+            <div className={styles.head_feed}>
+              <p className={styles.h7}>{course.title}</p>
+              <p className={styles.text_feed}>{course.price}</p>
+            </div>
+          </div>
+          <div className={styles.container_text}>
+            <p className={styles.text}>{course.description}</p>
+          </div>
+          <div className={styles.containerMore} onClick={() => setActiveModal(course.level)}>
+            <img src={arrow} alt="arrow" />
+          </div>
+        </div>
+            
+          ))}
         </div>
 
         {activeModal && (
           <Popup
-            title={t(`levelSelect.courses.${activeModal}.title`)}
+            title={courses.find((c) => c.level === activeModal)?.title}
             onClose={() => setActiveModal(null)}
           >
-            <div>
-              {t(`levelSelect.modals.${activeModal}.content`, {
-                returnObjects: true,
-              }).map((line, index) => {
-                if (line.startsWith("- ")) {
-                  return <li key={index}>{line.slice(2)}</li>;
-                }
-                return <p key={index}>{line}</p>;
-              })}
+           <div>
+              {courses
+                .find((c) => c.level === activeModal)
+                ?.modalContent.map((line, index) =>
+                  line.startsWith("- ") ? (
+                    <li key={index}>{line.slice(2)}</li>
+                  ) : (
+                    <p key={index}>{line}</p>
+                  )
+                )}
             </div>
           </Popup>
         )}
