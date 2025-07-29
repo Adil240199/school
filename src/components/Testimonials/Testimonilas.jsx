@@ -24,7 +24,7 @@ export default function Testimonials() {
   }, [addReview]);
 
   if (loading) return <PreLoader />;
-  if (error)   return <p style={{ margin: 'auto' }}>Error: {error}</p>;
+  if (error)   return <p>Error: {error}</p>;
 
   return (
     <div className={styles.container}>
