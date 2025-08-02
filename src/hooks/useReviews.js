@@ -1,17 +1,16 @@
 import { useState, useEffect, useCallback } from "react";
 
-// Автоматический выбор API в зависимости от среды
+const API_URL_V = process.env.REACT_APP_API_URL;
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/api/reviews"
-    : "https://school-backend-c6gi.onrender.com/api/reviews";
+    : `${API_URL_V}/api/reviews`;
 
 export function useReviews() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Загрузка всех отзывов
   useEffect(() => {
     fetch(API_URL)
       .then((res) => {
@@ -23,7 +22,6 @@ export function useReviews() {
       .finally(() => setLoading(false));
   }, []);
 
-  // Добавление нового отзыва
   const addReview = useCallback(async (newReview) => {
     try {
       const res = await fetch(API_URL, {
