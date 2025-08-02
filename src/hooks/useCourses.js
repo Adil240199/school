@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
+const API_URL_V = process.env.NEXT_PUBLIC_API_URL;
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/api/courses"
-    : process.env.NEXT_PUBLIC_API_URL;
+    : `${API_URL_V}/api/courses`;
 
 export const useCourses = () => {
   const [courses, setCourses] = useState([]);
@@ -12,6 +13,8 @@ export const useCourses = () => {
   const { i18n } = useTranslation();
 
   useEffect(() => {
+    console.log("API_URL", API_URL);
+
     fetch(API_URL, {
       headers: { "Accept-Language": i18n.language },
     })
