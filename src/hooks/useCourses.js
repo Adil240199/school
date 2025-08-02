@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 const API_URL =
   process.env.NODE_ENV === "development"
     ? "http://localhost:3000/api/courses"
-    : "https://school-backend-c6gi.onrender.com/api/courses";
+    : process.env.NEXT_PUBLIC_API_URL;
 
 export const useCourses = () => {
   const [courses, setCourses] = useState([]);

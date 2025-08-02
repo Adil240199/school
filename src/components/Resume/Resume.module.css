@@ -93,9 +93,9 @@
   height: auto;
   z-index: 1;
   position: relative;
-  border-radius: 50%; /* делаем круглым */
-  background-color: rgba(255, 192, 201, 0.3); /* холодный пастельный розовый */
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  background: linear-gradient(to top, rgba(130, 121, 195, 0.5), rgba(255, 255, 255, 0));
+  box-shadow: 0 4px 20px rgba(43, 43, 43, 0.1);
 }
 
 .element {

@@ -35,6 +35,9 @@ button {
   }
 }
 
+h1 {
+  font-family: "Georgia", serif;
+}
 .overlay {
   position: fixed;
   top: 0;

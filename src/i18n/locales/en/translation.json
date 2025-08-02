@@ -39,9 +39,11 @@
     },
     "submit": "Submit"
   },
-  
+  "levelSelect": {
+    "title": "Courses"
+  },
   "resume": {
-    "title": "All About Me",
+    "title": "About Me",
     "profileAlt": "Profile photo",
     "name": "Aray Mukhametova",
     "experience": {

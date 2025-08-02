@@ -39,9 +39,12 @@
         },
         "submit": "Отправить"
       },
+      "levelSelect": {
+        "title": "Курсы"
+      },
 
       "resume": {
-        "title": "Всё обо мне",
+        "title": "Обо мне",
         "profileAlt": "Профильная фотография",
         "name": "Арай Мухаметова",
         "experience": {
