@@ -1,6 +1,6 @@
 .wrapper {
   width: 100%;
-  background: linear-gradient(to right, #ffedff, #fdffbb);
+  background: #f5efeb;
 }
 .mainContainer {
   padding: 5rem;
@@ -8,7 +8,6 @@
 
 .titleCourses {
   margin: 0 auto 36px;
-  font-size: clamp(12px, 1.2vw, 3rem);
   line-height: 130%;
   text-align: center;
   width: 75%;
@@ -19,44 +18,44 @@
 .blockCources {
   margin: auto;
   display: flex;
+  gap: 15px;
   justify-content: space-around;
 }
 
 .course {
-  color: #4c4c5e;
+  color: #506e85;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(#bde0fc, #fcb5e4);
+  background: linear-gradient( #c8d9e6, #d4e1eb);
   width: 268px;
   height: auto;
-  filter: drop-shadow(0px 0.2px 0.2px #000000);
+  border: #97d3ff solid 3px;
   border-radius: 10px;
 }
 
 .courseUpper,
 .courseElementary {
-  background: linear-gradient(#ffefaa, #fdb5e5);
+  background: linear-gradient( #c8d9e6, #fdb5e5);
 }
 
 .top_feed {
   display: flex;
   padding: 10px 15px;
+  
 }
 
-img {
+.img {
   width: 30px;
-  height: 30px;
+  height: auto;
 }
 
 .h7 {
-  font-weight: 400;
+  font-weight: 600;
   font-size: calc(12px + 6 * (100vw / 1400));
   line-height: 120%;
 }
 
 .text_feed {
-  font-family: "Roboto", sans-serif;
-  font-weight: 300;
   font-size: calc(10px + 5 * (100vw / 1400));
   line-height: 120%;
 }

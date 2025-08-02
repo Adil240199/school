@@ -39,7 +39,7 @@
 }
 
 .imageBlock {
-  max-width: 400px;
+  max-width: 600px;
 }
 
 .image {
@@ -111,9 +111,8 @@
 }
 
 @media (min-width: 1024px) {
-  .imageBlock {
-    width: 300px;
-  }
+  .content { gap: 100px;}
+
   .hero {
     padding: 8rem 20px;
   }

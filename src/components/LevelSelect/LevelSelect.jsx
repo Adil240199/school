@@ -15,13 +15,13 @@ const LevelSelect = ({ variant = "default" }) => {
   return (
     <div className={`${styles.wrapper} ${styles[variant]}`}>
       <div className={`${styles.mainContainer} container`}>
-        <h4 className={styles.titleCourses}>{t("levelSelect.title")}</h4>
+        <h1 className={styles.titleCourses}>{t("levelSelect.title")}</h1>
         <div className={styles.blockCources}>
           {courses.map((course) => (
           
           <div key={course.level} className={`${styles.course} ${styles[course.level]}`}>
           <div className={styles.top_feed}>
-            <img src={course.img} alt="course" />
+            <img src={course.img} alt="course" className={styles.img} />
             <div className={styles.head_feed}>
               <p className={styles.h7}>{course.title}</p>
               <p className={styles.text_feed}>{course.price}</p>

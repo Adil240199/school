@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./Hero.module.css";
-import hero from "../../images/hero/hero.png";
+import hero from "../../images/hero/heroTwo.png";
 import time from "../../images/icons/time.svg";
 import growth from "../../images/icons/growth.svg";
 import person from "../../images/icons/person.svg";
