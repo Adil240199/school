@@ -1,3 +1,8 @@
+.wrap {
+  background: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 50%);
+  margin-top: -64px;
+  color: #fff;
+}
 .hero {
   padding: 5rem 20px;
   text-align: center;
@@ -17,20 +22,17 @@
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-family: "Georgia", serif;
-  color: #2c3e50;
   margin-bottom: 10px;
 }
 
 .subtitle {
   font-size: 1.5rem;
-  color: #2c3e50;
 }
 
 .description {
   margin-top: 10px;
-  color: #34495e;
   font-size: 18px;
 }
 
@@ -60,7 +62,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  color: #2c3e50;
   font-size: 16px;
 }
 
@@ -79,19 +80,14 @@
 }
 
 .blockRegister {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   opacity: 0;
   pointer-events: none;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 99999;
   background: transparent;
   backdrop-filter: blur(15px);
-  border-radius: 20px;
   width: 60%;
+  max-width: 600px;
 }
 
 .openMenu {
@@ -111,7 +107,9 @@
 }
 
 @media (min-width: 1024px) {
-  .content { gap: 100px;}
+  .content {
+    gap: 100px;
+  }
 
   .hero {
     padding: 8rem 20px;

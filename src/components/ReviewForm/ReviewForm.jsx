@@ -22,7 +22,7 @@ export default function ReviewForm({ onSubmit, onCancel }) {
   };
 
   return (
-    <div className={styles.modalOverlay}>
+    <div className={`modal ${styles.modalOverlay}`}>
       <div className={styles.modalContent}>
         <h3>{t("testimonials.newReviewTitle")}</h3>
         <form className={styles.form} onSubmit={handleSubmit}>

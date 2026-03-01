@@ -1,4 +1,13 @@
-{     
+{  
+  "login": {
+    "login": "Login",
+    "logout": "logout",
+    "error": "Login error",
+    "registration": "Registration",
+    "resetPassword": "Reset Password",
+    "loading": "Loading"
+
+  },
   "hero": {
     "title": "Welcome",
     "subtitle": "to the online English school",
@@ -14,7 +23,7 @@
    "navbar": {
     "home": "Home",
     "courses": "Courses",
-    "about": "About Me",
+    "login" : "Login",
     "language": "Language"
    },
 

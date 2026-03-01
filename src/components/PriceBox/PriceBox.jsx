@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./PriceBox.module.css";
+import RequestModal from "../RequestModal/RequestModal";
 
 const features = [
   "📺 10 hours on-demand video",
@@ -9,13 +10,15 @@ const features = [
 ];
 
 const PriceBox = () => {
+  const [openRequest, setOpenRequest] = useState(false);
+
   return (
     <div className={styles.priceBox}>
       <div className={styles.card}>
         <p className={styles.price}>
           $19.99 <span className={styles.old}>$99.99</span>
         </p>
-        <button type="button" className={styles.button}>
+        <button onClick={() => setOpenRequest(true)}>
           Buy Now
         </button>
         <p className={styles.guarantee}>30-Day Money-Back Guarantee</p>
@@ -28,6 +31,7 @@ const PriceBox = () => {
           Have a question? Contact us
         </a>
       </div>
+      {openRequest && <RequestModal  onClose={() => setOpenRequest(false)} />}
     </div>
   );
 };

@@ -1,10 +1,13 @@
 .navbar {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   z-index: 9999;
-  background-color: #fff;
+  background: linear-gradient(
+    135deg,
+    rgba(59, 130, 246, 0.7) 0%,
+    rgba(139, 92, 246, 0.7) 50%
+  );
+  backdrop-filter: blur(10px);
+  color: #fff;
 }
 
 .navWrap {
@@ -16,7 +19,7 @@
 
 .wraplogo {
   flex-shrink: 0;
-  width: 70px;
+  max-width: 100px;
 }
 
 .logo {
@@ -27,7 +30,16 @@
 
 .ulDesktop {
   display: none;
-  margin: 0 auto;
+}
+
+.buttons {
+  z-index: 9999;
+  position: absolute;
+  left: 15rem;
+  top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .wrapIconMobile {
@@ -57,6 +69,7 @@
   position: fixed;
   inset: 0;
   width: 100vw;
+  height: 100vw;
   background-color: #fff;
   z-index: 40;
   transition: transform 0.5s ease;
@@ -105,6 +118,14 @@
   padding: 0 2rem;
 }
 
+.login {
+  color: rgb(5, 28, 92);
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
 @media (min-width: 1024px) {
   .ulDesktop {
     display: flex;
@@ -114,7 +135,9 @@
   .ulDesktop > * + * {
     margin-left: 0.5rem;
   }
-
+  .login {
+    color: #fff;
+  }
   .wrapIconMobile,
   .mobileMenu {
     display: none;
