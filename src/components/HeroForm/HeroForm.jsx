@@ -8,7 +8,6 @@ function HeroForm({ onClose }) {
   const { formData, errors, handleChange, handleSubmit } = useHeroForm();
 
   return (
-    <div>
       <div className={`${styles.containerSignLesson} container`}>
         <div className={styles.cross} onClick={onClose}>
           <div className={styles.horizontalLine}></div>
@@ -44,7 +43,6 @@ function HeroForm({ onClose }) {
           />
         </form>
       </div>
-    </div>
   );
 }
 

@@ -60,9 +60,7 @@ h1 {
   transform: translate(-50%, -50%);
   background: #fff;
   padding: 20px;
-  width: 50%;
   max-height: 90%;
-  max-width: 90%;
   border-radius: 8px;
   z-index: 99999;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);

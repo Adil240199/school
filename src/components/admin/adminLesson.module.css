@@ -1,0 +1,149 @@
+.wrap {
+  max-width: 1080px;
+  margin: 32px auto;
+  padding: 24px;
+  background: #f5f5f7;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-family: Inter, sans-serif;
+}
+
+.h {
+  margin-bottom: 16px;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.error {
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #fee;
+  color: #b11;
+  font-size: 14px;
+  border: 1px solid #fbb;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  background: #fff;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+}
+
+.form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.form input,
+.form select,
+.form textarea {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background: #fafafa;
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  border-color: #2563eb;
+  background: #fff;
+}
+
+.row {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.actions {
+  grid-column: 1/-1;
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.actions button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.actions button:first-child {
+  background: #2563eb;
+  color: #fff !important;
+}
+
+.actions button:nth-child(2) {
+  background: #fff;
+  color: #111 !important;
+  border-color: #ddd;
+}
+
+.actions button:nth-child(3) {
+  background: #f3f4f6;
+  color: #111 !important;
+  border-color: #ddd;
+}
+
+.list {
+  margin-top: 20px;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  padding: 12px 14px;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 4px;
+  border-bottom: 1px solid #f1f1f1;
+}
+
+.meta {
+  font-size: 12px;
+  color: #666;
+  margin-top: 4px;
+}
+
+.itemActions {
+  display: flex;
+  gap: 6px;
+}
+
+.itemActions button {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: #f3f4f6;
+  border: 1px solid #ddd;
+  color: #111 !important;
+}
+
+.itemActions button:last-child {
+  background: #fee;
+  border-color: #fbb;
+  color: #b11 !important;
+}
+
+@media (max-width: 768px) {
+  .form {
+    grid-template-columns: 1fr;
+  }
+  .actions button {
+    flex: 1;
+  }
+  .item {
+    flex-direction: column;
+    gap: 6px;
+  }
+}

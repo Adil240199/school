@@ -1,9 +1,4 @@
-.languageBlock {
-  z-index: 9999;
-  position: absolute;
-  right: 6rem;
-  top: 1rem;
-}
+
 
 .languageBlock .languageChose {
   margin-bottom: 5px;
@@ -11,13 +6,14 @@
 
 .languageBlock .languageChose b,
 .languageBlock .languageChose span {
-  color: black;
+  color: #fff;
   font-size: 15px;
   margin-left: 3px;
 }
 
 .languageBlock .languageChose span {
   cursor: pointer;
+  color: #fff;
   border-bottom: 2px #748db4 dashed;
 }
 

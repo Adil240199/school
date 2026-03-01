@@ -1,10 +1,13 @@
 
 .title {
-  margin: 0 0 12px;
+  margin: 0 auto 12px;
+  color: #172c49;
 }
 .body {
   margin-bottom: 16px;
   line-height: 1.6;
+  color: #172c49;
+
 }
 
 @media (max-width: 768px) {

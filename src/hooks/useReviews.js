@@ -1,10 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-
-const API_URL_V = process.env.REACT_APP_API_URL;
-const API_URL =
-  process.env.NODE_ENV === "development"
-    ? "http://localhost:3000/api/reviews"
-    : `${API_URL_V}/api/reviews`;
+import api from "../api"
 
 export function useReviews() {
   const [reviews, setReviews] = useState([]);
@@ -12,26 +7,20 @@ export function useReviews() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch(API_URL)
-      .then((res) => {
-        if (!res.ok) throw new Error("Failed to fetch reviews");
-        return res.json();
+    api.get("/reviews")
+      .then((response) => {
+        setReviews(response.data)
       })
-      .then(setReviews)
       .catch((e) => setError(e.message))
       .finally(() => setLoading(false));
   }, []);
 
   const addReview = useCallback(async (newReview) => {
     try {
-      const res = await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newReview),
-      });
-      if (!res.ok) throw new Error("Failed to submit review");
-      const saved = await res.json();
+      const response = await api.post("/reviews", newReview);
+      const saved = response.data;
       setReviews((prev) => [...prev, saved]);
+      return saved;
     } catch (e) {
       throw e;
     }
