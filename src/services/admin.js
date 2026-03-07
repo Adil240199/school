@@ -19,13 +19,11 @@ export async function fetchCourses() {
   const res = await safeRequest(api.get("/courses"));
   if (!res.ok) return [];
 
-  const coursesArray = Array.isArray(res.data)
-    ? res.data
-    : res.data.courses;
+  const coursesArray = Array.isArray(res.data) ? res.data : res.data.courses;
 
   return (coursesArray || []).map((c) => ({
     _id: c._id,
-    title: c.title,   // ← ВАЖНО
+    title: c.title, // ← ВАЖНО
     level: c.level,
   }));
 }
@@ -50,4 +48,16 @@ export async function updateLesson(id, payload) {
 // === УДАЛЕНИЕ ===
 export async function deleteLesson(id) {
   return safeRequest(api.delete(`/admin/lessons/${id}`));
+}
+
+// === ПОЛЬЗОВАТЕЛИ ===
+export async function fetchUsers() {
+  const res = await safeRequest(api.get("/admin/users"));
+  if (!res.ok) return [];
+  return res.data;
+}
+
+// === ВЫДАТЬ ДОСТУП К КУРСУ ===
+export async function grantCourseAccess(userId, courseId) {
+  return safeRequest(api.post("/admin/grant-course", { userId, courseId }));
 }

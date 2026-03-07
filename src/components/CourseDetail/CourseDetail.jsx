@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styles from "./CourseDetail.module.css";
 import { AuthContext } from "../../contexts/AuthContext";
-import axios from "axios";
+import api from "../../api";
 
 const CourseDetail = () => {
   const { level } = useParams();
@@ -15,18 +15,12 @@ const CourseDetail = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        // 1️⃣ Получаем курс по level
-        const courseRes = await axios.get(
-          `http://localhost:3000/api/courses/level/${level}`
-        );
+        const courseRes = await api.get(`/courses/level/${level}`);
 
         const courseData = courseRes.data;
         setCourse(courseData);
 
-        // 2️⃣ Получаем уроки по courseId
-        const lessonsRes = await axios.get(
-          `http://localhost:3000/api/courses/${courseData._id}/lessons`
-        );
+        const lessonsRes = await api.get(`/courses/${courseData._id}/lessons`);
 
         setLessons(lessonsRes.data);
       } catch (err) {
@@ -58,7 +52,7 @@ const CourseDetail = () => {
 
       <ul className={styles.lessonList}>
         {lessons.map((lesson) => (
-          <li key={lesson.id} className={styles.lessonItem}>
+          <li key={lesson._id} className={styles.lessonItem}>
             <div>
               <strong>{lesson.title}</strong>
               <div>{lesson.duration}</div>

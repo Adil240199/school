@@ -6,11 +6,14 @@ import {
   createLesson,
   updateLesson,
   deleteLesson,
+  fetchUsers,
+  grantCourseAccess,
 } from "../../services/admin";
 
 export default function AdminLesson() {
   const [courses, setCourses] = useState([]);
   const [lessons, setLessons] = useState([]);
+  const [users, setUsers] = useState([]);
 
   const [form, setForm] = useState({
     courseId: "",
@@ -23,7 +26,35 @@ export default function AdminLesson() {
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  // -------------------- load courses --------------------
+  // ---------- load users ----------
+  useEffect(() => {
+    let mounted = true;
+
+    (async () => {
+      const us = await fetchUsers();
+      if (!mounted) return;
+
+      setUsers(us);
+    })();
+
+    return () => (mounted = false);
+  }, []);
+
+  // ---------- grant course ----------
+  const grantCourse = async (userId, courseId) => {
+    if (!courseId) return;
+
+    const result = await grantCourseAccess(userId, courseId);
+
+    if (!result.ok) {
+      alert(result.error);
+      return;
+    }
+
+    alert("Access granted");
+  };
+
+  // ---------- load courses ----------
   useEffect(() => {
     let mounted = true;
 
@@ -39,10 +70,14 @@ export default function AdminLesson() {
     return () => (mounted = false);
   }, []);
 
-  // -------------------- load lessons for selected course --------------------
+  // ---------- load lessons ----------
   useEffect(() => {
     let mounted = true;
-    if (!form.courseId) return setLessons([]);
+
+    if (!form.courseId) {
+      setLessons([]);
+      return;
+    }
 
     (async () => {
       const ls = await fetchAdminLessons(form.courseId);
@@ -54,33 +89,29 @@ export default function AdminLesson() {
     return () => (mounted = false);
   }, [form.courseId]);
 
-  // -------------------- handle form inputs --------------------
+  // ---------- handle inputs ----------
   const handle = (e) => {
-    const { name, type, checked, value, files } = e.target;
-
-    if (name === "videoFile" && files && files[0]) {
-      setForm((f) => ({ ...f, video: files[0] }));
-      return;
-    }
+    const { name, value } = e.target;
 
     setForm((f) => ({
       ...f,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
-  // -------------------- reset form --------------------
+  // ---------- reset form ----------
   const reset = () => {
     setForm({
       courseId: courses[0]?._id || "",
       title: "",
       videoUrl: "",
     });
+
     setEditingId(null);
     setError("");
   };
 
-  // -------------------- submit (create / update) --------------------
+  // ---------- submit ----------
   const submit = async (mode) => {
     if (!form.title.trim()) return setError("Введите заголовок");
     if (!form.videoUrl.trim()) return setError("Введите ссылку на видео");
@@ -120,22 +151,28 @@ export default function AdminLesson() {
     setSaving(false);
   };
 
-  // -------------------- edit --------------------
+  // ---------- edit ----------
   const edit = (l) => {
     setForm({
       courseId: form.courseId,
       title: l.title || "",
       videoUrl: l.videoUrl || "",
     });
+
     setEditingId(l._id);
   };
 
-  // -------------------- delete --------------------
+  // ---------- delete ----------
   const remove = async (id) => {
     const result = await deleteLesson(id);
-    if (!result.ok) return setError(result.error);
+
+    if (!result.ok) {
+      setError(result.error);
+      return;
+    }
 
     setLessons((l) => l.filter((x) => x._id !== id));
+
     if (id === editingId) reset();
   };
 
@@ -147,13 +184,14 @@ export default function AdminLesson() {
 
       {error && <div className={styles.error}>{error}</div>}
 
+      {/* FORM */}
       <div className={styles.form}>
         <label>
           Курс
           <select name="courseId" value={form.courseId} onChange={handle}>
             {courses.map((c) => (
               <option key={c._id} value={c._id}>
-               {c.title}
+                {c.title}
               </option>
             ))}
           </select>
@@ -173,31 +211,55 @@ export default function AdminLesson() {
           <button onClick={() => submit("create")} disabled={saving}>
             Create
           </button>
+
           <button
             onClick={() => submit("update")}
             disabled={!editingId || saving}
           >
             Update
           </button>
+
           <button onClick={reset} disabled={saving}>
             Clear
           </button>
         </div>
       </div>
 
+      {/* LESSONS */}
       <div className={styles.list}>
-        <h3>Уроки</h3>
+        <h3>Lessons</h3>
+
         {lessons.map((l) => (
           <div key={l._id} className={styles.item}>
             <div>
-              <strong>{l.title}</strong> <small>({l.duration})</small>
-              <div className={styles.meta}>{l.description}</div>
+              <strong>{l.title}</strong>
             </div>
 
             <div className={styles.itemActions}>
-              <button onClick={() => edit(l)}>✏︎</button>
+              <button onClick={() => edit(l)}>✏️</button>
               <button onClick={() => remove(l._id)}>🗑</button>
             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* USERS */}
+      <div className={styles.users}>
+        <h3>Users</h3>
+
+        {users.map((user) => (
+          <div key={user._id} className={styles.userRow}>
+            <span>{user.email}</span>
+
+            <select onChange={(e) => grantCourse(user._id, e.target.value)}>
+              <option value="">Grant course</option>
+
+              {courses.map((c) => (
+                <option key={c._id} value={c._id}>
+                  {c.title}
+                </option>
+              ))}
+            </select>
           </div>
         ))}
       </div>
