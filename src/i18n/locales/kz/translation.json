@@ -22,6 +22,7 @@
   "navbar": {
     "home": "Басты бет",
     "courses": "Курстар",
+    "myCourses": "Менің курстарым",
     "about": "Өзім туралы",
     "language": "Тіл"
   },
@@ -84,7 +85,8 @@
       "subscribeTitle": "Жаңалықтарға жазылу",
       "subscribeButton": "Жазылу",
       "placeholder": "мысалы: example@email.com",
-      "emailError": "Жарамсыз email мекенжайы"
+      "emailError": "Жарамсыз email мекенжайы",
+      "success": "Жазылғаныңыз үшін рақмет!"
   }
 }
   

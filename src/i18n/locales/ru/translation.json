@@ -22,6 +22,7 @@
     "navbar": {
         "home": "Главная",
         "courses": "Курсы",
+        "myCourses": "Мои Курсы",
         "about": "Обо мне",
         "language": "Язык"
       },
@@ -83,7 +84,8 @@
         "subscribeTitle": "Подписка на новости",
         "subscribeButton": "Подписаться",
         "placeholder": "example@email.com",
-        "emailError": "Неверный email"
+        "emailError": "Неверный email",
+        "success": "Спасибо за подписку!"
       }
 }
   

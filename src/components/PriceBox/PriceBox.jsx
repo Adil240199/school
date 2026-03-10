@@ -13,7 +13,7 @@ const PriceBox = () => {
   const [openRequest, setOpenRequest] = useState(false);
 
   return (
-    <div className={styles.priceBox}>
+    <div className={`container ${styles.priceBox}`}>
       <div className={styles.card}>
         <p className={styles.price}>
           $19.99 <span className={styles.old}>$99.99</span>

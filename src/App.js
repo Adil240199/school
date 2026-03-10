@@ -11,7 +11,7 @@ import LoginForm from "./components/LoginForm/LoginForm.jsx";
 import ProtectedRoute from "./utils/ProtectedRoute.jsx";
 import CourseDetail from "./components/CourseDetail/CourseDetail.jsx";
 import Admin from "./pages/AdminPage.jsx";
-
+import MyCourses from "./pages/myCourses.jsx";
 
 function App() {
   return (
@@ -26,7 +26,14 @@ function App() {
             <Route path="/courses" element={<Courses />} />
             <Route path="/courses/:level" element={<CourseDetail />} />
             <Route path="/aboutme" element={<AboutMe />} />
-
+            <Route
+              path="/mycourses"
+              element={
+                <ProtectedRoute requiredRole="user">
+                  <MyCourses />
+                </ProtectedRoute>
+              }
+            />
             <Route
               path="/admin"
               element={

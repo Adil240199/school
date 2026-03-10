@@ -1,0 +1,61 @@
+.wrapper {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.titleCourses {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #3a5870;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: linear-gradient(135deg, #D6ECFF 0%, #EAF7FF 100%);
+  border-radius: 14px;
+  padding: 25px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.image {
+  width: 70px;
+  margin-bottom: 20px;
+}
+
+.cardContent h3 {
+  margin-bottom: 20px;
+  color: #506e85;
+}
+
+.openBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: white;
+  color: #3a5870;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.openBtn:hover {
+  background: #f2f7fb;
+}
