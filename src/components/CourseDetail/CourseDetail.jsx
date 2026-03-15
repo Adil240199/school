@@ -23,7 +23,6 @@ const CourseDetail = () => {
 
         const lessonsRes = await api.get(`/courses/${courseData._id}/lessons`);
         setLessons(lessonsRes.data);
-        console.log("Lessons:", lessonsRes.data);
 
         setLessons(lessonsRes.data);
 

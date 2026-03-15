@@ -1,6 +1,5 @@
 import React, { createContext, useState, useEffect, useRef } from "react";
-import api, { setApiAuth, updateAccessToken } from "../api";
-import axios from "axios";
+import api from "../api";
 export const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -65,10 +64,10 @@ export function AuthProvider({ children }) {
     let mounted = true;
     (async () => {
       try {
-        setApiAuth({
-          getAccessToken: async () => accessTokenRef.current,
-          refreshToken: refresh,
-        });
+        // setApiAuth({
+        //   getAccessToken: async () => accessTokenRef.current,
+        //   refreshToken: refresh,
+        // });
 
         const newAccess = await refresh();
         if (!newAccess) {
@@ -90,39 +89,44 @@ export function AuthProvider({ children }) {
     const reqInterceptor = api.interceptors.request.use((config) => {
       const token = accessTokenRef.current;
       if (token) {
-        config.headers = config.headers || {};
         config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     });
-
+  
     const resInterceptor = api.interceptors.response.use(
       (res) => res,
       async (error) => {
         const original = error.config;
-        // если нет ответа или нет статуса — пробрасываем
-        if (!error.response) return Promise.reject(error);
-
-        // если 401 и мы ещё не пытались рефрешить этот запрос
-        if (error.response.status === 401 && !original._retry) {
+  
+        // КРИТИЧЕСКОЕ УСЛОВИЕ: если ошибка 401 пришла от самого запроса на рефреш - 
+        // сразу выходим, иначе будет бесконечный PreLoader
+        if (error.response?.status === 401 && original.url.includes("/auth/refresh")) {
+          return Promise.reject(error);
+        }
+  
+        if (error.response?.status === 401 && !original._retry) {
           original._retry = true;
-          const newAccess = await refresh();
-          if (newAccess) {
-            original.headers = original.headers || {};
-            original.headers.Authorization = `Bearer ${newAccess}`;
-            return api(original); // повторяем запрос
+          
+          try {
+            const newAccess = await refresh(); // Вызываем твой защищенный рефреш
+            if (newAccess) {
+              original.headers.Authorization = `Bearer ${newAccess}`;
+              return api(original); 
+            }
+          } catch (err) {
+            return Promise.reject(err);
           }
         }
-
+  
         return Promise.reject(error);
       }
     );
-
+  
     return () => {
       api.interceptors.request.eject(reqInterceptor);
       api.interceptors.response.eject(resInterceptor);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Регистрация: бэк ожидает name,email,password и возвращает accessToken + ставит refresh cookie
@@ -157,7 +161,6 @@ export function AuthProvider({ children }) {
       // Поддерживаем совместимость: либо accessToken, либо token (старый)
       const token = data?.accessToken || data?.token || null;
       accessTokenRef.current = token;
-      updateAccessToken(token);
       if (data?.user) {
         setUser(data.user);
         try {
