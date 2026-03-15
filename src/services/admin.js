@@ -10,7 +10,9 @@ async function safeRequest(promise) {
       err.response?.data?.error ||
       err.message ||
       "Server error. Please try again.";
+
     console.error("API error:", msg);
+
     return { ok: false, error: msg };
   }
 }
@@ -23,16 +25,30 @@ export async function fetchCourses() {
 
   return (coursesArray || []).map((c) => ({
     _id: c._id,
-    title: c.title, // ← ВАЖНО
+    title: c.title,
     level: c.level,
   }));
 }
-// === УРОКИ (АДМИНСКИЕ!) ===
+
+// === УРОКИ (АДМИНСКИЕ) ===
 export async function fetchAdminLessons(courseId) {
   if (!courseId) return [];
+
   const res = await safeRequest(api.get(`/admin/courses/${courseId}/lessons`));
   if (!res.ok) return [];
+
   return res.data;
+}
+
+// === ЗАГРУЗКА ВИДЕО УРОКА ===
+export async function uploadLessonVideo(formData) {
+  return safeRequest(
+    api.post("/lessons/upload", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+  );
 }
 
 // === СОЗДАНИЕ ===
@@ -54,6 +70,7 @@ export async function deleteLesson(id) {
 export async function fetchUsers() {
   const res = await safeRequest(api.get("/admin/users"));
   if (!res.ok) return [];
+
   return res.data;
 }
 

@@ -3,22 +3,20 @@ import styles from "./adminLesson.module.css";
 import {
   fetchCourses,
   fetchAdminLessons,
-  createLesson,
-  updateLesson,
   deleteLesson,
   fetchUsers,
   grantCourseAccess,
+  uploadLessonVideo,
 } from "../../services/admin";
 
 export default function AdminLesson() {
   const [courses, setCourses] = useState([]);
   const [lessons, setLessons] = useState([]);
   const [users, setUsers] = useState([]);
-
+  const [videoFile, setVideoFile] = useState(null);
   const [form, setForm] = useState({
     courseId: "",
     title: "",
-    videoUrl: "",
   });
 
   const [editingId, setEditingId] = useState(null);
@@ -104,48 +102,36 @@ export default function AdminLesson() {
     setForm({
       courseId: courses[0]?._id || "",
       title: "",
-      videoUrl: "",
     });
-
+  
+    setVideoFile(null);
     setEditingId(null);
     setError("");
   };
+  
 
   // ---------- submit ----------
-  const submit = async (mode) => {
+  const submit = async () => {
+    if (!videoFile) return setError("Выберите видео");
     if (!form.title.trim()) return setError("Введите заголовок");
-    if (!form.videoUrl.trim()) return setError("Введите ссылку на видео");
 
     setSaving(true);
     setError("");
 
-    const payload = {
-      courseId: form.courseId,
-      title: form.title,
-      videoUrl: form.videoUrl,
-    };
+    const data = new FormData();
+    data.append("title", form.title);
+    data.append("courseId", form.courseId);
+    data.append("video", videoFile);
 
-    let result;
-
-    if (mode === "create") {
-      result = await createLesson(payload);
-    } else {
-      result = await updateLesson(editingId, payload);
-    }
+    const result = await uploadLessonVideo(data);
 
     if (!result.ok) {
-      setError(result.error || "Ошибка сохранения");
+      setError(result.error);
       setSaving(false);
       return;
     }
 
-    const lesson = result.data;
-
-    if (mode === "create") {
-      setLessons((l) => [...l, lesson]);
-    } else {
-      setLessons((l) => l.map((x) => (x._id === editingId ? lesson : x)));
-    }
+    setLessons((l) => [...l, result.data]);
 
     reset();
     setSaving(false);
@@ -204,7 +190,11 @@ export default function AdminLesson() {
 
         <label>
           Ссылка на видео
-          <input name="videoUrl" value={form.videoUrl} onChange={handle} />
+          <input
+            type="file"
+            accept="video/mp4"
+            onChange={(e) => setVideoFile(e.target.files[0])}
+          />
         </label>
 
         <div className={styles.actions}>
