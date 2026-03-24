@@ -1,9 +1,9 @@
 .containerSignLesson {
   z-index: 1500;
   padding: 30px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   border-radius: 20px;
   position: relative;
+  
 }
 .lines {
   display: flex;
@@ -22,7 +22,6 @@
 .some_text {
   font-size: 1.5rem;
   line-height: 24px;
-  color: rgba(13, 96, 111, 0.5);
 }
 
 .sign {
@@ -33,7 +32,6 @@
 .sgn_text {
   font-size: 1rem;
   line-height: 19px;
-  color: #0d606f;
   text-align: center;
 }
 

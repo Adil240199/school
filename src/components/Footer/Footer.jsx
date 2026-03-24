@@ -1,48 +1,66 @@
 import React from "react";
 import styles from "./Footer.module.css";
-import Social from "../Social/Social";
 import { NavLink } from "react-router-dom";
-import logo from "../../images/brand/logo.png";
-import { useEmailSubscribe } from "../../hooks/useEmailSubscribe";
 import { useTranslation } from "react-i18next";
 
+import Social from "../Social/Social";
+import logo from "../../images/brand/logo.png";
+import { useEmailSubscribe } from "../../hooks/useEmailSubscribe";
+
 const Footer = () => {
-  const { email, isValid, handleChange, handleSubmit } = useEmailSubscribe();
+  const { email, isValid, success, handleChange, handleSubmit } =
+    useEmailSubscribe();
 
   const { t } = useTranslation();
+  const year = new Date().getFullYear();
 
   return (
     <footer className={styles.footerWrap}>
       <div className={`${styles.footer} container`}>
+        {/* Logo */}
         <div className={styles.logoBlock}>
           <NavLink to="/" className={styles.wraplogo}>
-            <img className={styles.logo} src={logo} alt="logo" />
+            <img
+              className={styles.logo}
+              src={logo}
+              alt="Raymea English School"
+            />
           </NavLink>
-          <p className={styles.footerText}>
-            &copy; {new Date().getFullYear()} Raymea English School
-          </p>
+
+          <p className={styles.footerText}>© {year} Raymea English School</p>
         </div>
 
+        {/* Social links */}
         <Social />
 
+        {/* Subscribe form */}
         <form onSubmit={handleSubmit} className={styles.subscribeForm}>
           <label htmlFor="email" className={styles.emailLabel}>
             {t("footer.subscribeTitle")}
           </label>
+
           <input
             id="email"
             type="email"
             value={email}
             onChange={handleChange}
-            className={`${styles.emailInput} ${!isValid ? styles.invalid : ""}`}
             placeholder={t("footer.placeholder")}
+            className={`${styles.emailInput} ${!isValid ? styles.invalid : ""}`}
             required
           />
-          <button className={styles.subscribeButton} type="submit">
+
+          <button type="submit" className={styles.subscribeButton}>
             {t("footer.subscribeButton")}
           </button>
+
+          {/* Error */}
           {!isValid && (
             <span className={styles.errorText}>{t("footer.emailError")}</span>
+          )}
+
+          {/* Success */}
+          {success && (
+            <span className={styles.successText}>🎉 {t("footer.success")}</span>
           )}
         </form>
       </div>

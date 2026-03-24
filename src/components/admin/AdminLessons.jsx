@@ -1,145 +1,213 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import styles from "./adminLesson.module.css";
 import {
   fetchCourses,
   fetchAdminLessons,
-  createLesson,
-  updateLesson,
   deleteLesson,
+  fetchUsers,
+  grantCourseAccess,
+  uploadLessonVideo,
 } from "../../services/admin";
+import { AuthContext } from "../../contexts/AuthContext";
 
 export default function AdminLesson() {
+  const { user, loading: authLoading } = useContext(AuthContext);
+
   const [courses, setCourses] = useState([]);
   const [lessons, setLessons] = useState([]);
+  const [users, setUsers] = useState([]);
+
+  const [videoFile, setVideoFile] = useState(null);
 
   const [form, setForm] = useState({
     courseId: "",
     title: "",
-    videoUrl: "",
   });
 
   const [editingId, setEditingId] = useState(null);
+
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
-  // -------------------- load courses --------------------
+
+  /* ---------------- LOAD INITIAL DATA ---------------- */
+
   useEffect(() => {
+    if (authLoading) return;
+
+  // Если авторизация прошла, но юзера нет (не админ/не залогинен)
+  if (!user) {
+    setLoading(false); 
+    return;
+  }
+
     let mounted = true;
 
-    (async () => {
-      const cs = await fetchCourses();
-      if (!mounted) return;
+    async function loadData() {
+      try {
+        const [coursesData, usersData] = await Promise.all([
+          fetchCourses(),
+          fetchUsers(),
+        ]);
 
-      setCourses(cs);
-      setForm((f) => ({ ...f, courseId: cs[0]?._id || "" }));
-      setLoading(false);
-    })();
+        if (!mounted) return;
 
-    return () => (mounted = false);
-  }, []);
+        setCourses(coursesData);
+        setUsers(usersData);
 
-  // -------------------- load lessons for selected course --------------------
+        if (coursesData.length) {
+          setForm((f) => ({
+            ...f,
+            courseId: coursesData[0]._id,
+          }));
+        }
+      } catch (err) {
+        console.error(err);
+        setError("Failed to load admin data");
+      } finally {
+        if (mounted) setLoading(false);
+      }
+    }
+
+    loadData();
+
+    return () => {
+      mounted = false;
+    };
+  }, [user, authLoading]);
+
+  /* ---------------- LOAD LESSONS ---------------- */
+
   useEffect(() => {
-    let mounted = true;
-    if (!form.courseId) return setLessons([]);
+    if (!form.courseId) return;
 
-    (async () => {
-      const ls = await fetchAdminLessons(form.courseId);
+    let mounted = true;
+
+    async function loadLessons() {
+      const data = await fetchAdminLessons(form.courseId);
       if (!mounted) return;
 
-      setLessons(ls);
-    })();
+      setLessons(data);
+    }
 
-    return () => (mounted = false);
+    loadLessons();
+
+    return () => {
+      mounted = false;
+    };
   }, [form.courseId]);
 
-  // -------------------- handle form inputs --------------------
-  const handle = (e) => {
-    const { name, type, checked, value, files } = e.target;
+  /* ---------------- INPUT HANDLER ---------------- */
 
-    if (name === "videoFile" && files && files[0]) {
-      setForm((f) => ({ ...f, video: files[0] }));
-      return;
-    }
+  const handle = (e) => {
+    const { name, value } = e.target;
 
     setForm((f) => ({
       ...f,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
   };
 
-  // -------------------- reset form --------------------
+  /* ---------------- RESET FORM ---------------- */
+
   const reset = () => {
     setForm({
       courseId: courses[0]?._id || "",
       title: "",
-      videoUrl: "",
     });
+
+    setVideoFile(null);
     setEditingId(null);
     setError("");
   };
 
-  // -------------------- submit (create / update) --------------------
-  const submit = async (mode) => {
+  /* ---------------- CREATE LESSON ---------------- */
+
+  const submit = async () => {
+    if (!videoFile) return setError("Выберите видео");
     if (!form.title.trim()) return setError("Введите заголовок");
-    if (!form.videoUrl.trim()) return setError("Введите ссылку на видео");
 
     setSaving(true);
     setError("");
 
-    const payload = {
-      courseId: form.courseId,
-      title: form.title,
-      videoUrl: form.videoUrl,
-    };
+    try {
+      const data = new FormData();
 
-    let result;
+      data.append("title", form.title);
+      data.append("courseId", form.courseId);
+      data.append("video", videoFile);
 
-    if (mode === "create") {
-      result = await createLesson(payload);
-    } else {
-      result = await updateLesson(editingId, payload);
+      const result = await uploadLessonVideo(data);
+
+      if (!result.ok) {
+        setError(result.error);
+        return;
+      }
+
+      setLessons((prev) => [...prev, result.data]);
+
+      reset();
+    } catch (err) {
+      console.error(err);
+      setError("Upload failed");
+    } finally {
+      setSaving(false);
     }
+  };
+
+  /* ---------------- EDIT LESSON ---------------- */
+
+  const edit = (lesson) => {
+    setForm({
+      courseId: form.courseId,
+      title: lesson.title || "",
+    });
+
+    setEditingId(lesson._id);
+  };
+
+  /* ---------------- DELETE LESSON ---------------- */
+
+  const remove = async (id) => {
+    const result = await deleteLesson(id);
 
     if (!result.ok) {
-      setError(result.error || "Ошибка сохранения");
-      setSaving(false);
+      setError(result.error);
       return;
     }
 
-    const lesson = result.data;
+    setLessons((prev) => prev.filter((l) => l._id !== id));
 
-    if (mode === "create") {
-      setLessons((l) => [...l, lesson]);
-    } else {
-      setLessons((l) => l.map((x) => (x._id === editingId ? lesson : x)));
+    if (editingId === id) reset();
+  };
+
+  /* ---------------- GRANT COURSE ---------------- */
+
+  const grantCourse = async (userId, courseId) => {
+    if (!courseId) return;
+
+    const result = await grantCourseAccess(userId, courseId);
+
+    if (!result.ok) {
+      alert(result.error);
+      return;
     }
 
-    reset();
-    setSaving(false);
+    alert("Access granted");
   };
 
-  // -------------------- edit --------------------
-  const edit = (l) => {
-    setForm({
-      courseId: form.courseId,
-      title: l.title || "",
-      videoUrl: l.videoUrl || "",
-    });
-    setEditingId(l._id);
-  };
+  /* ---------------- PAGE LOADING ---------------- */
 
-  // -------------------- delete --------------------
-  const remove = async (id) => {
-    const result = await deleteLesson(id);
-    if (!result.ok) return setError(result.error);
+  if (authLoading) {
+    return <div className={styles.wrap}>Auth loading...</div>;
+  }
+  
+  if (loading) {
+    return <div className={styles.wrap}>Loading...</div>;
+  }
 
-    setLessons((l) => l.filter((x) => x._id !== id));
-    if (id === editingId) reset();
-  };
-
-  if (loading) return <div className={styles.wrap}>Загрузка…</div>;
+  /* ---------------- UI ---------------- */
 
   return (
     <div className={styles.wrap}>
@@ -147,13 +215,15 @@ export default function AdminLesson() {
 
       {error && <div className={styles.error}>{error}</div>}
 
+      {/* FORM */}
+
       <div className={styles.form}>
         <label>
           Курс
           <select name="courseId" value={form.courseId} onChange={handle}>
             {courses.map((c) => (
               <option key={c._id} value={c._id}>
-               {c.title}
+                {c.title}
               </option>
             ))}
           </select>
@@ -165,39 +235,64 @@ export default function AdminLesson() {
         </label>
 
         <label>
-          Ссылка на видео
-          <input name="videoUrl" value={form.videoUrl} onChange={handle} />
+          Видео
+          <input
+            type="file"
+            accept="video/mp4"
+            onChange={(e) => setVideoFile(e.target.files[0])}
+          />
         </label>
 
         <div className={styles.actions}>
-          <button onClick={() => submit("create")} disabled={saving}>
+          <button onClick={submit} disabled={saving}>
             Create
           </button>
-          <button
-            onClick={() => submit("update")}
-            disabled={!editingId || saving}
-          >
-            Update
-          </button>
+
+          <button disabled={!editingId || saving}>Update</button>
+
           <button onClick={reset} disabled={saving}>
             Clear
           </button>
         </div>
       </div>
 
+      {/* LESSONS */}
+
       <div className={styles.list}>
-        <h3>Уроки</h3>
+        <h3>Lessons</h3>
+
         {lessons.map((l) => (
           <div key={l._id} className={styles.item}>
             <div>
-              <strong>{l.title}</strong> <small>({l.duration})</small>
-              <div className={styles.meta}>{l.description}</div>
+              <strong>{l.title}</strong>
             </div>
 
             <div className={styles.itemActions}>
-              <button onClick={() => edit(l)}>✏︎</button>
+              <button onClick={() => edit(l)}>✏️</button>
               <button onClick={() => remove(l._id)}>🗑</button>
             </div>
+          </div>
+        ))}
+      </div>
+
+      {/* USERS */}
+
+      <div className={styles.users}>
+        <h3>Users</h3>
+
+        {users.map((u) => (
+          <div key={u._id} className={styles.userRow}>
+            <span>{u.email}</span>
+
+            <select onChange={(e) => grantCourse(u._id, e.target.value)}>
+              <option value="">Grant course</option>
+
+              {courses.map((c) => (
+                <option key={c._id} value={c._id}>
+                  {c.title}
+                </option>
+              ))}
+            </select>
           </div>
         ))}
       </div>

@@ -6,15 +6,17 @@ import { useAuth } from "../hooks/useAuth";
 export default function ProtectedRoute({ children, requiredRole }) {
   const { loading, isAuthenticated, role } = useAuth();
 
-  if (loading) return <PreLoader />;
+  if (loading) return <PreLoader />;  // не авторизован
+  if (!isAuthenticated) {
+    return <Navigate to="/login" replace />;
+  }
 
-  if (!isAuthenticated) return <Navigate to="/login" replace />;
-
+  // проверка роли
   if (!requiredRole) return children;
 
   const allowed = Array.isArray(requiredRole)
-    ? requiredRole.map((r) => String(r).toLowerCase().trim()).includes(role)
-    : String(requiredRole).toLowerCase().trim() === role;
+    ? requiredRole.map((r) => r.toLowerCase()).includes(role)
+    : requiredRole.toLowerCase() === role;
 
   return allowed ? children : <Navigate to="/courses" replace />;
 }

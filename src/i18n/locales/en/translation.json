@@ -23,6 +23,7 @@
    "navbar": {
     "home": "Home",
     "courses": "Courses",
+    "myCourses": "My Course",
     "login" : "Login",
     "language": "Language"
    },
@@ -83,7 +84,8 @@
     "subscribeTitle": "Subscribe to newsletter",
     "subscribeButton": "Subscribe",
     "placeholder": "example@email.com",
-    "emailError": "Invalid email address"
+    "emailError": "Invalid email address",
+    "success": "Thank you for subscribing!"
   }
 }
   
