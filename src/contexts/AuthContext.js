@@ -64,10 +64,6 @@ export function AuthProvider({ children }) {
     let mounted = true;
     (async () => {
       try {
-        // setApiAuth({
-        //   getAccessToken: async () => accessTokenRef.current,
-        //   refreshToken: refresh,
-        // });
 
         const newAccess = await refresh();
         if (!newAccess) {

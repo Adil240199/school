@@ -26,10 +26,7 @@ const LevelSelect = ({ variant = "default" }) => {
   return (
     <div className={`${styles.wrapper} ${styles[variant]}`}>
       <div className={`${styles.mainContainer} container`}>
-
-        <h1 className={styles.titleCourses}>
-          {t("levelSelect.title")}
-        </h1>
+        <h1 className={styles.titleCourses}>{t("levelSelect.title")}</h1>
 
         <div className={styles.blockCourses}>
           {courses.map((course) => (
@@ -44,11 +41,7 @@ const LevelSelect = ({ variant = "default" }) => {
                 </div>
               </div>
 
-              <img
-                src={course.img}
-                alt={course.title}
-                className={styles.img}
-              />
+              <img src={course.img} alt={course.title} className={styles.img} />
 
               <div
                 className={styles.containerMore}
@@ -68,34 +61,28 @@ const LevelSelect = ({ variant = "default" }) => {
         </div>
 
         {activeCourse && (
-          <Popup
-            title={activeCourse.title}
-            onClose={closeModal}
-          >
+          <Popup title={activeCourse.title} onClose={closeModal}>
             <div className={styles.modalContent}>
-
               <div className={styles.textBlock}>
-                {activeCourse.modalContent.map((line, index) =>
-                  line.startsWith("- ") ? (
-                    <li key={index} className={styles.listItem}>
-                      {line.slice(2)}
-                    </li>
-                  ) : (
-                    <p key={index} className={styles.paragraph}>
-                      {line}
-                    </p>
-                  )
-                )}
+                <ul className={styles.list}>
+                  {activeCourse.modalContent.map((line, index) =>
+                    line.startsWith("- ") ? (
+                      <li key={index} className={styles.listItem}>
+                        {line.slice(2)}
+                      </li>
+                    ) : (
+                      <p key={index} className={styles.paragraph}>
+                        {line}
+                      </p>
+                    )
+                  )}
+                </ul>
               </div>
 
-              <button className={styles.startBtn}>
-                Начать обучение
-              </button>
-
+              <button className={styles.startBtn}>Начать обучение</button>
             </div>
           </Popup>
         )}
-
       </div>
     </div>
   );
